@@ -1,18 +1,18 @@
 package logica;
 
-public class Cliente {
+public class Client {
 	
 	private String id;
 	
-	private String nombre;
+	private String name;
 	
 	private String email;
 	
-	public Cliente(String id, String nombre, String email) {
+	public Client(String id, String name, String email) {
 		
 		this.id = id;
 		
-		this.nombre = nombre;
+		this.name = name;
 		
 		this.email = email;
 	}
@@ -22,14 +22,18 @@ public class Cliente {
 		return id;
 	}
 	
-	public String getNombre() {
+	public String getName() {
 		
-		return nombre;
+		return name;
 	}
 
 	public String getEmail() {
 	
 		return email;
 	}	
+	
+	public void updateClient() {
+		
+	}
  
 }
