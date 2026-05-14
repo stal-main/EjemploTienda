@@ -2,17 +2,23 @@ package logica;
 
 public class Products {
 	
+	private static int consecutive = 0;
+	
 	private int code;
 	
 	private String name;
 	
-	private float stock;
+	private int stock;
 	
 	private String unit;
 	
 	private double price;
 	
 	public Products(String name, int stock, String unit, double price) {
+		
+		consecutive++;
+		
+		this.code = consecutive;
 		
 		this.name = name;
 		
@@ -52,6 +58,17 @@ public class Products {
 	public void updateProduct(String name, String stock, int unit, double price) {
 		
 		
+	}
+	
+	public void updateProduct(String name, int stock, String unit, double price) {
+		
+		this.name = name;
+		
+		this.stock = stock;
+		
+		this.unit = unit;
+		
+		this.price = price;
 	}
 
 }
