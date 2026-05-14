@@ -55,11 +55,6 @@ public class Products {
 		return price;
 	}
 	
-	public void updateProduct(String name, String stock, int unit, double price) {
-		
-		
-	}
-	
 	public void updateProduct(String name, int stock, String unit, double price) {
 		
 		this.name = name;

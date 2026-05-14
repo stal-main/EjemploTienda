@@ -194,6 +194,21 @@ public class Control {
         return result;
     }
 	
+	public double getTotalPendingAmount() {
+		
+	    double total = 0;
+	    
+	    for (Order o : orders.values()) {
+	    	
+	        if ("Pending".equalsIgnoreCase(o.getStatus())) {
+	        	
+	            total += o.getTotalAmount();
+	        }
+	    }
+	    
+	    return total;
+	}
+	
 	public int createOrder(String clientId) {
 		
 		Client c = clients.get(clientId);
