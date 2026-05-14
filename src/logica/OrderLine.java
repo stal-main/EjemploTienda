@@ -2,25 +2,49 @@ package logica;
 
 public class OrderLine {
 	
-	private float amount;
+	private static int consecutive = 0;
 	
-	public OrderLine(int amount) {
+	private int lineNumber;
+	
+	private Products product;
+	
+	private int amount;
+	
+	public OrderLine(Products product, int amount) {
+		
+		consecutive++;
+		
+		this.lineNumber = consecutive;
+		this.product = product;
 		
 		this.amount = amount;
 	}
 	
-	public int getOrderLine() {
+	public int getLineNumber() {
 		
-		
+		return lineNumber;
 	}
 	
-	public getProduct() {
+	public Products getProduct() {
 		
+		return product;
 	}
 	
-	public int amount() {
+	public int getAmount() {
 		
 		return amount;
+	}
+	
+	public void updateLine(Products product, int amount) {
+		
+		this.product = product;
+		
+		this.amount = amount;
+	}
+
+	public double getLineCost() {
+		
+		return product.getPrice() * amount;
 	}
 
 }

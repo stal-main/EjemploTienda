@@ -1,8 +1,12 @@
 package logica;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Order {
+	
+	private static int consecutive = 0;
 	
 	private int number;
 	
@@ -10,13 +14,23 @@ public class Order {
 	
 	private String status;
 	
-	public Order() {
+	private Client client;
+	
+	private Map<Integer, OrderLine> lines;
+	
+	public Order(Client client) {
 		
-		this.number = number;
+		consecutive++;
 		
-		date = LocalDateTime.now();
+		this.number = consecutive;
 		
-		this.status = status;
+		this.date = LocalDateTime.now();
+		
+		this.status = "Initiated";
+		
+		this.client = client;
+		
+		this.lines = new HashMap<>();
 		
 	}
 	
@@ -35,9 +49,68 @@ public class Order {
 		return status;
 	}
 	
+	public Client getClient() {
+		
+		return client;
+	}
+	
 	public void changeStatus(String newStatus) {
 		
+		this.status = newStatus;
+	}
+	
+	public double getAmount() {
 		
+		double total = 0;
+		
+		for (OrderLine line : lines.values()) {
+			
+			total += line.getLineCost();
+		}
+		
+		return total;
+	}
+	
+	public double getTaxAmount() {
+		
+		return getAmount() * 0.13;
+	}
+	
+	public double getTotalAmount() {
+		
+		return getAmount() + getTaxAmount();
+	}
+	
+	public Map<Integer, String> getLines() {
+		
+        Map<Integer, String> result = new HashMap<>();
+        
+        for (OrderLine line : lines.values()) {
+        	
+            result.put(line.getLineNumber(), line.getProduct().getName() + " x" + line.getAmount());      
+        }
+        
+        return result;
+    }
+	
+	public void addLine(OrderLine line) {
+		
+		lines.put(line.getLineNumber(), line);
+	}
+	
+	public void updateLine(int lineNumber, Products product, int amount) {
+		
+		OrderLine line = lines.get(lineNumber);
+		
+		if (line != null) {
+			
+			line.updateLine(product, amount);
+		}
+	}
+	
+	public void deleteLine(int lineNumber) {
+		
+		lines.remove(lineNumber);
 	}
 
 }
