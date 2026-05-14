@@ -2,6 +2,7 @@ package control;
 
 import logica.Client;
 import logica.Order;
+import logica.OrderLine;
 import logica.Products;
 
 import java.util.Map;
@@ -181,6 +182,127 @@ public class Control {
         products.remove(code);
     }
 	
-
+	public Map<Integer, String> getOrders() {
+		
+        Map<Integer, String> result = new HashMap<>();
+        
+        for (Order o : orders.values()) {
+        	
+            result.put(o.getNumber(), o.getStatus());
+        }
+        
+        return result;
+    }
+	
+	public int createOrder(String clientId) {
+		
+		Client c = clients.get(clientId);
+		
+		if (c == null) {
+			
+			return -1;
+		}
+		
+		Order o = new Order(c);
+		
+		orders.put(o.getNumber(), o);
+		
+		c.addOrder(o);
+		
+		return o.getNumber();
+	}
+	
+	public String getOrder(int number) {
+		
+		Order o = orders.get(number);
+		
+		if (o == null) {
+			
+			return null;
+		}
+		
+		return "Order #" + o.getNumber() + " Date: " + o.getDate() + " Status: " + o.getStatus() + " Total: " + o.getTotalAmount();
+ 	}
+	
+	public String deleteOrder(int number) {
+		
+        Order o = orders.remove(number);
+        
+        if (o == null) return "Order not found.";
+        
+        o.getClient().deleteOrder(number);
+        
+        return "Order #" + number + " deleted.";
+    }
+	
+	public Map<Integer, String> getOrderLines(int number) {
+		
+        Order o = orders.get(number);
+        
+        if (o == null) return null;
+        
+        return o.getLines();
+    }
+	
+	public void setOrderPending(int number) {
+		
+        Order o = orders.get(number);
+        
+        if (o != null) {
+        	
+            o.changeStatus("Pending");
+        }
+    }
+	
+	public void setOrderCompleted(int number) {
+		
+        Order o = orders.get(number);
+        
+        if (o != null) {
+        	
+            o.changeStatus("Completed");
+        }
+    }
+	
+	public void addOrderLine(int orderNumber, int productCode, int amount) {
+		
+        Order o = orders.get(orderNumber);
+        
+        Products p = products.get(productCode);
+        
+        if (o == null || p == null) {
+        	
+        	return;
+        }
+        
+        OrderLine line = new OrderLine(p, amount);
+        
+        o.addLine(line);
+    }
+	
+	public void updateOrderLine(int orderNumber, int lineNumber, int productCode, int quantity) {
+		
+        Order o = orders.get(orderNumber);
+        
+        Products p = products.get(productCode);
+        
+        if (o == null || p == null) {
+        	
+        	return;
+        }
+        
+        o.updateLine(lineNumber, p, quantity);
+        
+    }
+	
+	public void deleteOrderLine(int orderNumber, int lineNumber) {
+		
+        Order o = orders.get(orderNumber);
+        
+        if (o != null) {
+        	
+            o.deleteLine(lineNumber);
+        }
+    }
 	
 }
