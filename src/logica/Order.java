@@ -12,6 +12,32 @@ public class Order {
 	
 	public Order() {
 		
+		this.number = number;
+		
+		date = LocalDateTime.now();
+		
+		this.status = status;
+		
+	}
+	
+	public int getNumber() {
+		
+		return number;
+	}
+	
+	public LocalDateTime getDate() {
+		
+		return date;
+	}
+	
+	public String getStatus() {
+		
+		return status;
+	}
+	
+	public void changeStatus(String newStatus) {
+		
+		
 	}
 
 }

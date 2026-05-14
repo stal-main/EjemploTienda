@@ -1,5 +1,7 @@
 package logica;
 
+import java.util.Map;
+
 public class Client {
 	
 	private String id;
@@ -32,8 +34,28 @@ public class Client {
 		return email;
 	}	
 	
-	public void updateClient() {
+	public void updateClient(String name, String email) {
 		
 	}
- 
+	
+	public double RemainingTotal() {
+		
+		
+	}
+	
+	public Map<Integer, String> getOrders() {
+		
+	}
+	
+	public Map<Integer, String> getOrdersByStatus(String status) {
+		
+	}
+	
+	public void addOrder() {
+	
+	}
+	
+	public void deleteOrder(int number) {
+		
+	}
 }

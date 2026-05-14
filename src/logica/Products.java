@@ -49,7 +49,7 @@ public class Products {
 		return price;
 	}
 	
-	public void updateProduct() {
+	public void updateProduct(String name) {
 		
 		
 	}
