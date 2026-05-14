@@ -4,18 +4,19 @@ import logica.Client;
 import logica.Order;
 import logica.OrderLine;
 import logica.Products;
-
+ 
 import java.util.Map;
 import java.util.HashMap;
 
-
 public class Control {
+	
+	private static Control instance;
 	
 	private Map<String, Client> clients;
 	private Map<Integer, Products> products;
 	private Map<Integer, Order> orders;
 	
-	public Control() {
+	private Control() {
 		
 		clients = new HashMap<>();
 		
@@ -24,6 +25,16 @@ public class Control {
 		orders = new HashMap<>();
 		
 	}
+	
+	public static Control getInstance() {
+		 
+        if (instance == null) {
+ 
+            instance = new Control();
+        }
+ 
+        return instance;
+    }
 	
 	public Map<String, String> getClients() {
 		
