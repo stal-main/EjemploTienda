@@ -54,7 +54,7 @@ public class Client {
 			
 			if ("Pending".equalsIgnoreCase(o.getStatus())) {
 				
-				total += o.getTotalAmout();
+				total += o.getTotalAmount();
 			}
 		}
 		
