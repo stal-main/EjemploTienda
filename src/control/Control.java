@@ -133,6 +133,54 @@ public class Control {
 			clients.remove(id);
 		}
 	}
+	
+	public Map<Integer, String> getProducts() {
+		
+		Map<Integer, String> result = new HashMap<>();
+		
+		for (Products p : products.values()) {
+			
+			result.put(p.getCode(), p.getName());
+		}
+		
+		return result;
+		
+	}
+	
+	public String getProduct(int code) {
+		
+		Products p = products.get(code);
+		
+		if (p == null) {
+			
+			return null;
+		}
+		
+		return "Code: " + p.getCode() + " Name: " + p.getName() + " Stock: " + p.getStock() + " Unit: " + p.getUnit() + " Price: " + p.getPrice();
+	}
+	
+	public void createProduct(String name, int stock, String unit, double price) {
+		
+        Products p = new Products(name, stock, unit, price);
+        
+        products.put(p.getCode(), p);
+    }
+	
+	public void updateProduct(int code, String name, int stock, String unit, double price) {
+		
+		Products p = products.get(code);
+		
+		if (p != null) {
+			
+			p.updateProduct(name, stock, unit, price);
+		}
+	}
+	
+	public void deleteProduct(int code) {
+		
+        products.remove(code);
+    }
+	
 
 	
 }
