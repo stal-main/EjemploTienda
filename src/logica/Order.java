@@ -1,10 +1,13 @@
 package logica;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Order {
+public class Order implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private static int consecutive = 0;
 	

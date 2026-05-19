@@ -1,9 +1,12 @@
 package logica;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Client {
+public class Client implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private String id;
 	
